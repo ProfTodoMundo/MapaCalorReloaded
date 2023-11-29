@@ -1,20 +1,20 @@
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
-if (!requireNamespace("magrittr"))install.packages("magritt");           library(magrittr)
-if (!requireNamespace("pheatmap"))install.packages("pheatmap");          library(pheatmap)
-if (!requireNamespace("RColorBrewer"))install.packages("RcolorBrewer");  library(RColorBrewer)
-if (!requireNamespace("Rio"))install.packages("rio");                    library(rio)
-if (!requireNamespace("readr"))install.packages("readr");                library(readr)
-if (!requireNamespace("tidyverse"))install.packages("");                 library(tidyverse)
-if (!requireNamespace("mclust"))install.packages("mclust");              library(mclust)
-if (!requireNamespace("venn"))install.packages("venn");                  library(venn)
-if (!requireNamespace("dplyr"))install.packages("dplyr");                library(dplyr)
-if (!requireNamespace("ggplot2"))install.packages("ggplot2");            library(ggplot2)
-if (!requireNamespace("cowplot"))install.packages("cowplot");            library(cowplot)
-if (!requireNamespace("RColorBrewer"))install.packages("RColorBrewer");  library(RColorBrewer)
-if (!requireNamespace("ggVennDiagram"))install.packages("ggVennDiagram");library(ggVennDiagram)
-if (!requireNamespace("VennDiagram"))install.packages("VennDiagram");    library(VennDiagram)
+#if (!requireNamespace("magrittr"))install.packages("magritt");           library(magrittr)
+#if (!requireNamespace("pheatmap"))install.packages("pheatmap");          library(pheatmap)
+#if (!requireNamespace("RColorBrewer"))install.packages("RcolorBrewer");  library(RColorBrewer)
+#if (!requireNamespace("Rio"))install.packages("rio");                    library(rio)
+#if (!requireNamespace("readr"))install.packages("readr");                library(readr)
+#if (!requireNamespace("tidyverse"))install.packages("");                 library(tidyverse)
+#if (!requireNamespace("mclust"))install.packages("mclust");              library(mclust)
+#if (!requireNamespace("venn"))install.packages("venn");                  library(venn)
+#if (!requireNamespace("dplyr"))install.packages("dplyr");                library(dplyr)
+#if (!requireNamespace("ggplot2"))install.packages("ggplot2");            library(ggplot2)
+#if (!requireNamespace("cowplot"))install.packages("cowplot");            library(cowplot)
+#if (!requireNamespace("RColorBrewer"))install.packages("RColorBrewer");  library(RColorBrewer)
+#if (!requireNamespace("ggVennDiagram"))install.packages("ggVennDiagram");library(ggVennDiagram)
+#if (!requireNamespace("VennDiagram"))install.packages("VennDiagram");    library(VennDiagram)
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
-setwd("~/Desktop/MiGithub/MapaCalorReloaded") # computadora de la casa
+#setwd("~/Desktop/MiGithub/MapaCalorReloaded") # computadora de la casa
 setwd("~/Documentos/MiGitHub/MapaCalorReloaded") # computadora del trabajo
 library(readr)
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
@@ -33,29 +33,43 @@ colnames(NewGenes) <- c("GeneID","Trophozoites", "Cyst_8h","Cyst_24h",
                         "Cyst_48h","Cyst_72h","Excyst_2h","Excyst_8h")
 rownames(NewGenes) <- NewGenes$GeneID
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
-Genes_Clean <- NewGenes[,2:8]; View(Genes_Clean)
-rownames(Genes_Clean) <- rownames(NewGenes)
-Genes_Clean <- as.data.frame(Genes_Clean)
-rownames(Genes_Clean) <- NewGenes$GeneID
+NewGenes_Clean <- NewGenes[,2:8]; View(NewGenes_Clean)
+rownames(NewGenes_Clean) <- rownames(NewGenes)
+NewGenes_Clean <- as.data.frame(NewGenes_Clean)
+rownames(NewGenes_Clean) <- NewGenes$GeneID
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
-pdf("BoxplotDatosLimpios.pdf")
-boxplot(Genes_Clean, las = 2)
-dev.off()
-#<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
-NewGenes_log2 = log2(Genes_Clean + 1)
-pdf("BoxPlotDatosTransformadosLog2.pdf")
+NewGenes_log2 = log2(NewGenes_Clean + 1)
+write.csv(NewGenes_log2,"NewGenesLog.csv")
+pdf("Boxplot.pdf")
 boxplot(NewGenes_log2, las = 3)
 dev.off()
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
-GenesOrdered <- Genes_Clean[order(-Genes_Clean$Trophozoites),]; print(GenesOrdered)
+NewGenesOrdered <- NewGenes_Clean[order(-NewGenes_Clean$Trophozoites),]
+top_genes_NewGenes_Trop <- NewGenesOrdered %>% filter(Trophozoites>0) %>% select(Trophozoites)
+k <- dim(NewGenes_Clean); proporcion <- 0.8; NS <- round(k[1]*proporcion);
+random_genes_NewGenes = sample(rownames(NewGenes_Clean),NS ); View(random_genes_NewGenes)
+head(random_genes_NewGenes)
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
-library(dplyr)
-top_NewGenes_Trop <- GenesOrdered %>% filter(Trophozoites>0) %>% select(Trophozoites)
-k <- dim(Genes_Clean)
-proporcion <- 0.8
-NS <- round(k[1]*proporcion)
-random_NewGenes = sample(rownames(Genes_Clean),NS )
-head(random_NewGenes)
+sampledNewGenes_Log2 <- NewGenes_log2[random_genes_NewGenes, ]; #View(sampledNewGenes_Log2)
+write.csv(sampledNewGenes_Log2,"SampledNewGenesLog.csv")
+pdf("HeathMapNewGenesDef.pdf")
+pheatmap(NewGenes_log2[random_genes_NewGenes, ])
+dev.off()
+#<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
+NewGenes_log2_filtrado <- NewGenes_log2[rowSums(NewGenes_log2) != 0, ]; #View(NewGenes_log2_filtrado)
+pdf("HeathMapLog2NewGenesDef.pdf")
+pheatmap(NewGenes_log2_filtrado, scale = "row")
+dev.off()
+write.csv(NewGenes_log2_filtrado,"NewGenesLogFiltrado.csv")
+#<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
+my_colors = brewer.pal(n = 11, name = "RdBu")
+my_colors = colorRampPalette(my_colors)(50)
+my_colors = rev(my_colors)
+#<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
+pdf("HeathMapLog2NewGenesfiltrado.pdf")
+pheatmap(NewGenes_log2_filtrado, scale = "row",color = my_colors, border_color = NA, fontsize_row = 6)
+dev.off()
+# == << >> == << >> ==  == << >> == << >> ==  == << >> == << >> ==  == << >> == << >> ==  == << >> ==
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
 pdf("HeatMapDatosLimpios.pdf")
 pheatmap(NewGenes_Clean[random_genes_NewGenes, ])
@@ -108,62 +122,49 @@ pdf("MapadeCalorFinal.pdf")
 pheatmap(NewGenes_log2_filtrado, scale = "row",color = my_colors,
          border_color = NA, fontsize_row = 6)
 dev.off()
-# <==> <==> <==> <==> <==> <==> <==> <==> <==> <==> <==> <==> <==> <==>
-NewGenes_log2 = log2(NewGenes_Clean + 1)
-write.csv(NewGenes_log2,"NewGenesLog.csv")
-boxplot(NewGenes_log2, las = 3)
-#<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
-EiMbysOrdered <- NewGenes_Clean[order(-NewGenes_Clean$Trophozoites),]
-top_genes_NewGenes_Trop <- EiMbysOrdered %>% filter(Trophozoites>0) %>% select(Trophozoites)
-k <- dim(NewGenes_Clean); proporcion <- 1; NS <- round(k[1]*proporcion);
-random_genes_NewGenes = sample(rownames(NewGenes_Clean),NS )
-head(random_genes_NewGenes)
-#<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
-sampledNewGenes_Log2 <- NewGenes_log2[random_genes_NewGenes, ]; #View(sampledNewGenes_Log2)
-write.csv(sampledNewGenes_Log2,"SampledNewGenesLog.csv")
-pheatmap(NewGenes_log2[random_genes_NewGenes, ])
-NewGenes_log2_filtrado <- NewGenes_log2[rowSums(NewGenes_log2) != 0, ]; #View(NewGenes_log2_filtrado)
-pheatmap(NewGenes_log2_filtrado, scale = "row")
-write.csv(NewGenes_log2_filtrado,"NewGenesLogFiltrado.csv")
-#<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
-my_colors = brewer.pal(n = 11, name = "RdBu")
-my_colors = colorRampPalette(my_colors)(50)
-my_colors = rev(my_colors)
-#<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
-pheatmap(NewGenes_log2_filtrado, scale = "row",color = my_colors, border_color = NA, fontsize_row = 6)
-# == << >> == << >> ==  == << >> == << >> ==  == << >> == << >> ==  == << >> == << >> ==  == << >> ==
 NewGenes_Log2 <- NewGenes_log2_filtrado
 # == << >> == << >> ==  == << >> == << >> ==  == << >> == << >> ==  == << >> == << >> ==  == << >> ==
 hc <- hclust(dist(NewGenes_Log2))
 grupos <- cutree(hc, k = 1); colores <- c("purple", "blue");  
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
+pdf("DendogramNewGenesJerarquico.pdf")
 plot(hc, main = "Dendograma del análisis de clúster jerárquico", 
      col = colores[grupos], 
      xlab =  "Genes NewGenes",
      ylab = "Distancias",
      hang = -1)
+dev.off()
 #
+#<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
 hc <- hclust(dist(NewGenes_Log2),"ave")
+pdf("DendogramNewGenesJerarquicoAve.pdf")
 plot(hc, main = "Dendograma del análisis de clúster jerárquico",
      xlab =  "Genes NewGenes",
      ylab = "Distancias",
      hang = -1,
      col=colores[grupos])
-#
+dev.off()
+#<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
 hc <- hclust(dist(NewGenes_Log2),"cen")
+pdf("DendogramNewGenesJerarquicoCen.pdf")
 plot(hc, main = "Dendograma del análisis de clúster jerárquico",
      xlab =  "Genes NewGenes",
      ylab = "Distancias",
      hang = -1,
      col=colores[grupos])
+dev.off()
 # == << >> == << >> ==  == << >> == << >> ==  == << >> == << >> ==  == << >> == << >> ==  == << >> ==
 k <- 3
 kmeans_result <- kmeans(NewGenes_Log2, centers = k)
+pdf("KMeansGraph.pdf")
 plot(NewGenes_Log2, col = kmeans_result$cluster)
+dev.off()
 variaciones_explicadas <- vector("numeric", length = 10)
 for (k in 1:10) {
   kmeans_result <- kmeans(NewGenes_Log2, centers = k)
   variaciones_explicadas[k] <- kmeans_result$tot.withinss}
+#<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
+pdf("Kmeansto10.pdf")
 plot(1:10, variaciones_explicadas, type = "b", pch = 19, frame = FALSE,
      xlab = "Número de clústeres", ylab = "Variación explicada",main = "Método del codo")
 ss_total <- sum(var(NewGenes_Log2)^2)
@@ -171,36 +172,51 @@ variacion_explicada_rel <- 1 - variaciones_explicadas/ss_total
 lines(1:10, variacion_explicada_rel, type = "b", pch = 19, col = "red")
 abline(v = which.max(variacion_explicada_rel), col = "blue", lty = 2)
 k_optimo <- which.max(variacion_explicada_rel); k_optimo
+dev.off()
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
 hc <- hclust(dist(NewGenes_Log2))
 grupos <- cutree(hc, k = 10); colores <- c("purple", "blue");  
+pdf("DendogramNewGenesJerarquicoJerarq.pdf")
 plot(hc, main = "Dendograma del análisis de clúster jerárquico", 
      col = colores[grupos], xlab =  "Genes NewGenes",ylab = "Distancias",hang = -1)
-#
+dev.off()
+#<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
 hc <- hclust(dist(NewGenes_Log2),"ave")
+pdf("DendogramNewGenesJerarquicoAve.pdf")
 plot(hc, main = "Dendograma del análisis de clúster jerárquico",
      xlab =  "Genes NewGenes",ylab = "Distancias",hang = -1,col=colores[grupos])
-#
+dev.off()
+#<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
 hc <- hclust(dist(NewGenes_Log2),"cen")
+pdf("DendogramNewGenesJerarquicoCen.pdf")
 plot(hc, main = "Dendograma del análisis de clúster jerárquico",xlab =  "Genes NewGenes",
      ylab = "Distancias",hang = -1,col=colores[grupos])
+dev.off()
 # == << >> == << >> ==  == << >> == << >> ==  == << >> == << >> ==  == << >> == << >> ==  == << >> ==
-
+library(mclust)
 # Aplicar el clustering basado en el algoritmo de mezcla de Gaussianas
 mclust_result <- Mclust(NewGenes_Log2)
+pdf("ClusterGaussClass.pdf")
 plot(mclust_result, what = "classification",
      main = "Cluster basado en mezcla de gaussianos",
      hang = -1, col=my_colors)
+dev.off()
+#<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
+pdf("ClusterGaussDensity.pdf")
 plot(mclust_result, what = "density",
      main = "Cluster basado en mezcla de gaussianos",
      hang = -1,col=my_colors)
+dev.off()
+#<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
+pdf("ClusterGaussUncertainty.pdf")
 plot(mclust_result, what = "uncertainty",
      main = "Cluster basado en mezcla de gaussianos",
      hang = -1,col=my_colors)
+dev.off()
+#<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
+pdf("ClusterGaussBIC.pdf")
 plot(mclust_result, what = "BIC",
      main = "Cluster basado en mezcla de gaussianos",
      hang = -1,col=my_colors)
+dev.off()
 # == << >> == << >> ==  == << >> == << >> ==  == << >> == << >> ==  == << >> == << >> ==  == << >> ==
-
-
-
