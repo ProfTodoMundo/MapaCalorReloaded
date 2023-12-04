@@ -1,6 +1,6 @@
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
-#setwd("~/Desktop/MiGithub/MapaCalorReloaded") # computadora de la casa
-setwd("~/Documentos/MiGitHub/MapaCalorReloaded") # computadora del trabajo
+setwd("~/Desktop/MiGithub/MapaCalorReloaded") # computadora de la casa
+#setwd("~/Documentos/MiGitHub/MapaCalorReloaded") # computadora del trabajo
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
 library(RColorBrewer)
 library(readr)
@@ -60,8 +60,79 @@ pheatmap(NewGenes_log2_filtrado, scale = "row",
          cluster_rows = TRUE,
          legend_breaks = c(-1,0,1),
          legend_labels = c("Bajo","Medio","Alto"))#,
-         kmeans_k = 50, 
-         cellheight = 10)
+#         kmeans_k = 50, 
+#         cellheight = 10)
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
 
+pdf("Lab/HeatMapNormalizadosRenglon.pdf")
+pheatmap(NewGenes_log2_filtrado, scale = "row")
+dev.off()
+
+pdf("Lab/HeatMapNormalizadosColumna.pdf")
+pheatmap(NewGenes_log2_filtrado, scale = "column")
+dev.off()
+
+pdf("Lab/HeatMapPaletaPersonal.pdf")
+pheatmap(NewGenes_log2_filtrado, scale = "row", color = my_colors2)
+dev.off()
+
+my_colors = brewer.pal(n = 11, name = "RdBu")
+my_colors = colorRampPalette(my_colors)(50)
+my_colors = rev(my_colors)
+#my_colors
+
+pdf("Lab/HeatMapLog2Transformed.pdf")
+pheatmap(NewGenes_log2_filtrado, scale = "row", color = my_colors)
+dev.off()
+
+pdf("Lab/HeatMapLog2TransformedLetra4.pdf")
+pheatmap(NewGenes_log2_filtrado, scale = "row",color = my_colors, border_color = NA, fontsize_row = 4)
+dev.off()
+
+pdf("Lab/MapadeCalorFinal.pdf")
+pheatmap(NewGenes_log2_filtrado, scale = "row",color = my_colors, border_color = NA, fontsize_row = 6)
+dev.off()
+# <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>>
+# llegamos por fin llegamos
+# <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>>
+pdf("Lab/MapadeCalorFinalSDC.pdf") # sin dendogramas columnas
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE)
+dev.off()
+
+pdf("Lab/HeathmapCFSinNorm.pdf") # sin dendogramas columnas
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE)
+dev.off()
+
+#scale = "row",
+# A partir de aqui
+pdf("Lab/HeathmapCFNormRenglon.pdf") # sin dendogramas columnas
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,scale = "row")
+dev.off()
+
+
+#fontsize_row = 6
+pdf("Lab/HeathmapCFNormRenglonLetra.pdf") # sin dendogramas columnas
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,
+         scale = "row",fontsize_row = 8)
+dev.off()
+
+#border_color = NA, 
+pdf("Lab/HeathmapCFNormRenglonLetra8SinBordes.pdf") # sin dendogramas columnas
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,
+         scale = "row",fontsize_row = 8, border_color = NA)
+dev.off()
+
+
+#color = my_colors, 
+pdf("Lab/HeathmapCFNormRenglonLetra8SinBordesMycolors.pdf") # sin dendogramas columnas
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,
+         scale = "row",fontsize_row = 8, border_color = NA)
+dev.off()
+
+
+#color = my_colors, 
+pdf("Lab/HeathmapCFNormRenglonLetra8conBordesMycolors.pdf") # sin dendogramas columnas
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,
+         scale = "row",fontsize_row = 8)
+dev.off()
 
