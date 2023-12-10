@@ -1,6 +1,7 @@
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
 #setwd("~/Desktop/MiGithub/MapaCalorReloaded") # computadora de la casa
-setwd("~/Desktop/MiGithub/MapaCalorReloaded/DraElisaNewData")
+#setwd("~/Desktop/MiGithub/MapaCalorReloaded/DraElisaNewData")
+setwd("~/Documents/GitHub/MapaCalorReloaded/DraElisaNewData")
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
 library(RColorBrewer)
 library(readr)
