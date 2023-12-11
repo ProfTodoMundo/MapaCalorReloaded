@@ -96,7 +96,7 @@ pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors3,main ="
 ## ---- Parametros 65 y 4.25 ----
 cell_width <- 65
 mi_font_size <- 4.25
-nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"ConnBordes","Colores1",".pdf")
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"ConBordes","Colores1",".pdf")
 pdf(nombregrafico)
 pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,scale = "row",
          fontsize_row = mi_font_size, cellwidth = cell_width,main ="Amplio de celda 65 y letras de genes 4.25")
