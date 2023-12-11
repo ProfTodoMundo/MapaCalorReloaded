@@ -60,111 +60,173 @@ my_colors3 = colorRampPalette(my_colors3)(50)
 my_colors3 = rev(my_colors3)
 my_colors4 = colorRampPalette(rev(brewer.pal(n = 7, name = "RdYlBu")))(100)
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
-pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,
-         scale = "row",fontsize_row = 2.75)
-
-
 # ---- Creación de gráficas ----
-pdf("MapasCalor/BoxplotGenes.pdf")
+## ---- Parametros 60 y 3.75 ----
+cell_width <- 60
+mi_font_size <- 3.75
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"ConBordes","Colores1",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,scale = "row",
+         fontsize_row = mi_font_size, cellwidth = cell_width,main ="Amplio de celda 60 y letras de genes 3.25")
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"SinBordes","Colores1",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,main ="Amplio de celda 60 y letras de genes 3.75",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width, border_color = NA)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"conBordes","Colores2",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors2,main ="Amplio de celda 60 y letras de genes 3.75",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"SinBordes","Colores2",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors2,main ="Amplio de celda 60 y letras de genes 3.75",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width, border_color = NA)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"ConBordes","Colores3",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors3,main ="Amplio de celda 60 y letras de genes 3.75",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"SinBordes","Colores3",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors3,main ="Amplio de celda 60 y letras de genes 3.75",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width, border_color = NA)
+## ---- Parametros 65 y 4.25 ----
+cell_width <- 65
+mi_font_size <- 4.25
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"ConnBordes","Colores1",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,scale = "row",
+         fontsize_row = mi_font_size, cellwidth = cell_width,main ="Amplio de celda 65 y letras de genes 4.25")
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"SinBordes","Colores1",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,main ="Amplio de celda 65 y letras de genes 4.25",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width, border_color = NA)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"SinBordes","Colores1",".pdf")
+pdf(nombregrafico)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"ConBordes","Colores2",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors2,main ="Amplio de celda 65 y letras de genes 4.25",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"SinBordes","Colores2",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors2,main ="Amplio de celda 65 y letras de genes 4.25",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width, border_color = NA)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"ConBordes","Colores3",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors3,main ="Amplio de celda 65 y letras de genes 4.25",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"SinBordes","Colores3",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors3,main ="Amplio de celda 65 y letras de genes 4.25",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width, border_color = NA)
+## ---- Parametros 70 y 3.75 ----
+cell_width <- 70
+mi_font_size <- 3.75
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"ConBordes","Colores1",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,scale = "row",
+         fontsize_row = mi_font_size, cellwidth = cell_width,main ="Amplio de celda 70 y letras de genes 3.75")
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"SinBordes","Colores1",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,main ="Amplio de celda 70 y letras de genes 3.75",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width, border_color = NA)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"ConBordes","Colores2",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors2,main ="Amplio de celda 70 y letras de genes 3.75",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"SinBordes","Colores2",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors2,main ="Amplio de celda 70 y letras de genes 3.75",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width, border_color = NA)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"ConBordes","Colores3",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors3,main ="Amplio de celda 70 y letras de genes 3.75",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"SinBordes","Colores3",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors3,main ="Amplio de celda 70 y letras de genes 3.75",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width, border_color = NA)
+## ---- Parametros 75 y 3.75 ----
+cell_width <- 75
+mi_font_size <- 3.75
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"ConBordes","Colores1",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,scale = "row",
+         fontsize_row = mi_font_size, cellwidth = cell_width,main ="Amplio de celda 75 y letras de genes 3.75")
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"SinBordes","Colores1",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,main ="Amplio de celda 75 y letras de genes 3.75",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width, border_color = NA)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"ConBordes","Colores2",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors2,main ="Amplio de celda 75 y letras de genes 3.75",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"SinBordes","Colores2",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors2,main ="Amplio de celda 75 y letras de genes 3.75",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width, border_color = NA)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"ConBordes","Colores3",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors3,main ="Amplio de celda 75 y letras de genes 3.75",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"SinBordes","Colores3",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors3,main ="Amplio de celda 75 y letras de genes 3.75",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width, border_color = NA)
+## ---- Parametros 60 y 4.25 ----
+cell_width <- 60
+mi_font_size <- 4.25
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"ConBordes","Colores1",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,scale = "row",
+         fontsize_row = mi_font_size, cellwidth = cell_width,main ="Amplio de celda 60 y letras de genes 4.25")
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"SinBordes","Colores1",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,main ="Amplio de celda 60 y letras de genes 4.25",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width, border_color = NA)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"ConBordes","Colores2",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors2,main ="Amplio de celda 60 y letras de genes 4.25",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"SinBordes","Colores2",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors2,main ="Amplio de celda 60 y letras de genes 4.25",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width, border_color = NA)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"ConBordes","Colores3",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors3,main ="Amplio de celda 60 y letras de genes 4.25",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width)
+dev.off()
+nombregrafico <-paste("MapasCalor/Heathmap","Celda_",cell_width,"y FontSize_",mi_font_size,"SinBordes","Colores3",".pdf")
+pdf(nombregrafico)
+pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors3,main ="Amplio de celda 60 y letras de genes 4.25",
+         scale = "row",fontsize_row = mi_font_size, cellwidth = cell_width, border_color = NA)
+dev.off()
+nombregrafico <-paste("MapasCalor/Boxplot",".pdf")
+pdf(nombregrafico)
 boxplot(NewGenes_log2_filtrado, las = 3)
-dev.off()
-#<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
-
-#fontsize_row = 6 DESTE FUE ELEGIDO
-pdf("MapasCalor/HeathmapCFNormRenglonLetra.pdf") # sin dendogramas columnas
-dev.off()
-
-#border_color = NA,  DESTE FUE ELEGIDO
-pdf("Lab/HeathmapCFNormRenglonLetra8SinBordes.pdf") # sin dendogramas columnas
-pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,
-         scale = "row",fontsize_row = 2.75, border_color = NA)
-dev.off()
-
-
-#color = my_colors,  DESTE FUE ELEGIDO
-pdf("Lab/HeathmapCFNormRenglonLetra8SinBordesMycolors.pdf") # sin dendogramas columnas
-pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,
-         scale = "row",fontsize_row = 2.75, border_color = NA)
-dev.off()
-
-
-#color = my_colors,  DESTE FUE ELEGIDO
-pdf("Lab/HeathmapCFNormRenglonLetra8conBordesMycolors.pdf") # sin dendogramas columnas
-pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,
-         scale = "row",fontsize_row = 2.75, main = "Mi Mapa de Calor")
-dev.off()
-
-
-
-pdf("Lab/HeatMapNormalizadosRenglon.pdf")
-pheatmap(NewGenes_log2_filtrado, scale = "row")
-dev.off()
-
-pdf("Lab/HeatMapNormalizadosColumna.pdf")
-pheatmap(NewGenes_log2_filtrado, scale = "column")
-dev.off()
-
-pdf("Lab/HeatMapPaletaPersonal.pdf")
-pheatmap(NewGenes_log2_filtrado, scale = "row", color = my_colors2)
-dev.off()
-
-my_colors = brewer.pal(n = 11, name = "RdBu")
-my_colors = colorRampPalette(my_colors)(50)
-my_colors = rev(my_colors)
-#my_colors
-
-pdf("Lab/HeatMapLog2Transformed.pdf")
-pheatmap(NewGenes_log2_filtrado, scale = "row", color = my_colors)
-dev.off()
-
-pdf("Lab/HeatMapLog2TransformedLetra4.pdf")
-pheatmap(NewGenes_log2_filtrado, scale = "row",color = my_colors, border_color = NA, fontsize_row = 4)
-dev.off()
-
-pdf("Lab/MapadeCalorFinal.pdf")
-pheatmap(NewGenes_log2_filtrado, scale = "row",color = my_colors, border_color = NA, fontsize_row = 6)
-dev.off()
-# <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>>
-# llegamos por fin llegamos
-# <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>> <<>><<>>
-pdf("Lab/MapadeCalorFinalSDC.pdf") # sin dendogramas columnas
-pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE)
-dev.off()
-
-pdf("Lab/HeathmapCFSinNorm.pdf") # sin dendogramas columnas
-pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE)
-dev.off()
-
-#scale = "row",
-# A partir de aqui
-pdf("Lab/HeathmapCFNormRenglon.pdf") # sin dendogramas columnas
-pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,scale = "row")
-dev.off()
-
-
-#fontsize_row = 6
-pdf("Lab/HeathmapCFNormRenglonLetra.pdf") # sin dendogramas columnas
-pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,
-         scale = "row",fontsize_row = 2.75)
-dev.off()
-
-#border_color = NA, 
-pdf("Lab/HeathmapCFNormRenglonLetra8SinBordes.pdf") # sin dendogramas columnas
-pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,
-         scale = "row",fontsize_row = 2.75, border_color = NA)
-dev.off()
-
-
-#color = my_colors, 
-pdf("Lab/HeathmapCFNormRenglonLetra8SinBordesMycolors.pdf") # sin dendogramas columnas
-pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,
-         scale = "row",fontsize_row = 2.75, border_color = NA)
-dev.off()
-
-
-#color = my_colors, 
-pdf("Lab/HeathmapCFNormRenglonLetra8conBordesMycolors.pdf") # sin dendogramas columnas
-pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,
-         scale = "row",fontsize_row = 2.75, main = "Mi Mapa de Calor")
 dev.off()
 
