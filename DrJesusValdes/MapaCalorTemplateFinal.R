@@ -291,6 +291,7 @@ random_genes_NewGenes  <- sample(rownames(NewGenes_Clean),NS );
 sampledNewGenes_Log2   <- NewGenes_log2[random_genes_NewGenes, ];
 NewGenes_log2_filtrado <- NewGenes_log2[rowSums(NewGenes_log2) != 0, ];View(NewGenes_log2_filtrado)
 LetraSize <- 6
+                                        
 ## ---- Generacion de graficos ----
 pdf("MapasCalor/ModIntestinal.pdf")
 boxplot(NewGenes_log2_filtrado, las = 3)
