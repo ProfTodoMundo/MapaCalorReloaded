@@ -52,22 +52,22 @@ dev.off()
 pdf("MapasCalor/HeathmapCFNormRenglonEstresSueroMycolors.pdf") # sin dendogramas columnas
 pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,
          scale = "row",fontsize_row = LetraSize, border_color = NA,
-         main = "Bajo Estrés y Suero")
+         main = "Bajo Estrés-Suero")
 dev.off()
 pdf("MapasCalor/HeathmapCFNormRenglonEstresSueroMycolors2.pdf") # sin dendogramas columnas
 pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors2,
          scale = "row",fontsize_row = LetraSize, border_color = NA,
-         main = "Bajo Estrés y Suero")
+         main = "Bajo Estrés-Suero")
 dev.off()
 pdf("MapasCalor/HeathmapCFNormRenglonEstresSueroMycolors3.pdf") # sin dendogramas columnas
 pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors3,
          scale = "row",fontsize_row = LetraSize, border_color = NA,
-         main = "Bajo Estrés y Suero")
+         main = "Bajo Estrés-Suero")
 dev.off()
 pdf("MapasCalor/HeathmapCFNormRenglonEstresSueroMycolors4.pdf") # sin dendogramas columnas
 pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors4,
          scale = "row",fontsize_row = LetraSize, border_color = NA,
-         main = "Bajo Estrés y Suero")
+         main = "Bajo Estrés-Suero")
 dev.off()
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
 # ---- Genes de Colon Virulento ----
@@ -82,6 +82,13 @@ rownames(NewGenes) <- NewGenes$GeneID
 NewGenes_Clean <- NewGenes[,2:5]; View(NewGenes_Clean)
 NewGenes_Clean <- as.data.frame(NewGenes_Clean)
 rownames(NewGenes_Clean) <- NewGenes$GeneID; View(NewGenes_Clean)
+NewGenes_CleanTemp <- NewGenes_Clean[c("Normal_Culture",
+                                       "Attenuated_Clean",
+                                       "Virulent_Colon",
+                                       "Virulent_Culture")] 
+
+View(NewGenes_CleanTemp)
+NewGenes_Clean <- NewGenes_CleanTemp; View(NewGenes_Clean)
 #<< ==  ==  ==  ==  ==  ==  ==  ==  == ==  ==  ==  ==  ==  ==  ==  ==  ==  == >> 
 # Generacion de las bdd modificadas
 NewGenes_log2   <-  log2(NewGenes_Clean + 1); View(NewGenes_log2)
@@ -214,6 +221,16 @@ random_genes_NewGenes  <- sample(rownames(NewGenes_Clean),NS );
 sampledNewGenes_Log2   <- NewGenes_log2[random_genes_NewGenes, ];
 NewGenes_log2_filtrado <- NewGenes_log2[rowSums(NewGenes_log2) != 0, ];View(NewGenes_log2_filtrado)
 LetraSize <- 6
+## ---- Personalización de la paleta de colores ----
+my_colors = brewer.pal(n = 11, name = "RdBu")
+my_colors = colorRampPalette(my_colors)(50)
+my_colors = rev(my_colors)
+my_colors2 = c("green", "yellow", "pink")
+my_colors2 = colorRampPalette(my_colors2)(50)
+my_colors3 = brewer.pal(n = 11, name = "RdBu")
+my_colors3 = colorRampPalette(my_colors3)(50)
+my_colors3 = rev(my_colors3)
+my_colors4 = colorRampPalette(rev(brewer.pal(n = 7, name = "RdYlBu")))(100)
 ## ---- Generacion de graficos ----
 pdf("MapasCalor/Enquistamiento.pdf")
 boxplot(NewGenes_log2_filtrado, las = 3)
