@@ -296,8 +296,9 @@ rownames(NewGenes_Clean) <- NewGenes$GeneID; View(NewGenes_Clean)
 #NewGenesClean <- NewGenes_Clean[1:32,]; View(NewGenesClean)
 #NewGenes_Clean <- NewGenesClean; View(NewGenes_Clean)
 ## ---- Generacion de las bdd modificadas ---- 
-NewGenes_Clean <- as.data.frame(lapply(NewGenes_Clean, as.numeric))
+#NewGenes_Clean <- as.data.frame(lapply(NewGenes_Clean, as.numeric))
 NewGenes_log2   <-  log2(NewGenes_Clean + 1); View(NewGenes_log2)
+#rownames(NewGenes_log2) <- rownames(NewGenes_Clean) <- NewGenes$GeneID
 #  ----  Orden con respecto a una de las columnas ---- 
 NewGenesOrdered <- NewGenes_Clean[order(-NewGenes_Clean$HM1_Trophs_TYI),]
 top_genes_NewGenes_Trop <- NewGenesOrdered %>% filter(HM1_Trophs_TYI>0) %>% select(HM1_Trophs_TYI)
