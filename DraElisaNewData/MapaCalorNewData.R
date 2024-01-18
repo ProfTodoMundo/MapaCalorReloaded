@@ -27,10 +27,28 @@ random_genes_NewGenes  <- sample(rownames(NewGenes_Clean),NS );
 sampledNewGenes_Log2   <- NewGenes_log2[random_genes_NewGenes, ];
 NewGenes_log2_filtrado <- NewGenes_log2[rowSums(NewGenes_log2) != 0, ];View(NewGenes_log2_filtrado)
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
-boxplot(NewGenes_Clean, las = 3)
-boxplot(NewGenes_log2, las = 3)
-pdf("MapasCalor/BoxPlot")
-boxplot(NewGenes_log2_filtrado, las = 3)
+colores <- c("red", "blue","yellow", "green", "grey","orange", "purple")
+
+pdf("MapasCalor/BoxPlotNewGenes.pdf")
+boxplot(NewGenes_Clean, las = 3, col = colores)
+legend("topright", legend = c("Trophozoites", "Encyst 8h",
+                              "Encyst 24h", "Encyst 48h", "Encyst 72h", "Excyst 2h", "Excyst 8h"),
+       fill = colores, title = "EiMybs Genes")
+dev.off()
+
+pdf("MapasCalor/BoxPlotLog2NewGenes.pdf")
+boxplot(NewGenes_log2, las = 3, col = colores, ylab="Log2(EiMybs)")
+legend("topright", legend = c("Trophozoites", "Encyst 8h",
+                              "Encyst 24h", "Encyst 48h", "Encyst 72h", "Excyst 2h", "Excyst 8h"),
+       fill = colores, title = "EiMybs Genes")
+dev.off()
+
+pdf("MapasCalor/BoxPlotFilteredLog2NewGenes.pdf")
+boxplot(NewGenes_log2_filtrado, las = 3, col = colores, ylab="Log2(EiMybs)")
+legend("topright", legend = c("Trophozoites", "Encyst 8h",
+                              "Encyst 24h", "Encyst 48h", "Encyst 72h", "Excyst 2h", "Excyst 8h"),
+       fill = colores, title = "EiMybs Genes")
+dev.off()
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
 # Personalización de la paleta de colores
 my_colors = brewer.pal(n = 11, name = "RdBu")
