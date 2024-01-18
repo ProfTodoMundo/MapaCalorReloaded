@@ -110,27 +110,27 @@ pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,scale = "row")
 dev.off()
 
 
-#fontsize_row = 6 DESTE FUE ELEGIDO
+#fontsize_row = 6
 pdf("Lab/HeathmapCFNormRenglonLetra.pdf") # sin dendogramas columnas
 pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,
          scale = "row",fontsize_row = 2.75)
 dev.off()
 
-#border_color = NA,  DESTE FUE ELEGIDO
+#border_color = NA, 
 pdf("Lab/HeathmapCFNormRenglonLetra8SinBordes.pdf") # sin dendogramas columnas
 pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,
          scale = "row",fontsize_row = 2.75, border_color = NA)
 dev.off()
 
 
-#color = my_colors,  DESTE FUE ELEGIDO
+#color = my_colors, 
 pdf("Lab/HeathmapCFNormRenglonLetra8SinBordesMycolors.pdf") # sin dendogramas columnas
 pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,
          scale = "row",fontsize_row = 2.75, border_color = NA)
 dev.off()
 
 
-#color = my_colors,  DESTE FUE ELEGIDO
+#color = my_colors, 
 pdf("Lab/HeathmapCFNormRenglonLetra8conBordesMycolors.pdf") # sin dendogramas columnas
 pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,
          scale = "row",fontsize_row = 2.75, main = "Mi Mapa de Calor")
