@@ -29,24 +29,30 @@ NewGenes_log2_filtrado <- NewGenes_log2[rowSums(NewGenes_log2) != 0, ];View(NewG
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
 colores <- c("red", "blue","yellow", "green", "grey","orange", "purple")
 
-pdf("MapasCalor/BoxPlotNewGenes.pdf")
+pdf("NewMapasCalor/BoxPlotNewGenes.pdf")
 boxplot(NewGenes_Clean, las = 3, col = colores)
 legend("topleft", legend = c("Trophozoites", "Encyst 8h",
-                              "Encyst 24h", "Encyst 48h", "Encyst 72h", "Excyst 2h", "Excyst 8h"),
+                             "Encyst 24h", "Encyst 48h", "Encyst 72h", "Excyst 2h", "Excyst 8h"),
        fill = colores, title = "EiMybs Genes")
 dev.off()
 
-pdf("MapasCalor/BoxPlotLog2NewGenes.pdf")
-boxplot(NewGenes_log2, las = 3, col = colores, ylab="Log2(EiMybs)")
+pdf("NewMapasCalor/BoxPlotLog2NewGenes.pdf")
+boxplot(NewGenes_log2, las = 2, col = colores, ylab="Log2(EiMybs)",
+        names = c("Trophozoites", "Encyst 8h","Encyst 24h", "Encyst 48h",
+                  "Encyst 72h", "Excyst 2h", "Excyst 8h"),
+        cex.axis = 0.8)
 legend("topleft", legend = c("Trophozoites", "Encyst 8h",
-                              "Encyst 24h", "Encyst 48h", "Encyst 72h", "Excyst 2h", "Excyst 8h"),
+                             "Encyst 24h", "Encyst 48h", "Encyst 72h", "Excyst 2h", "Excyst 8h"),
        fill = colores, title = "EiMybs Genes")
 dev.off()
 
-pdf("MapasCalor/BoxPlotFilteredLog2NewGenes.pdf")
-boxplot(NewGenes_log2_filtrado, las = 3, col = colores, ylab="Log2(EiMybs)")
+pdf("NewMapasCalor/BoxPlotFilteredLog2NewGenes.pdf")
+boxplot(NewGenes_log2_filtrado, las = 3, col = colores, ylab="Log2(EiMybs)",
+        names = c("Trophozoites", "Encyst 8h","Encyst 24h", "Encyst 48h",
+                  "Encyst 72h", "Excyst 2h", "Excyst 8h"),
+        cex.axis = 0.8)
 legend("topleft", legend = c("Trophozoites", "Encyst 8h",
-                              "Encyst 24h", "Encyst 48h", "Encyst 72h", "Excyst 2h", "Excyst 8h"),
+                             "Encyst 24h", "Encyst 48h", "Encyst 72h", "Excyst 2h", "Excyst 8h"),
        fill = colores, title = "EiMybs Genes")
 dev.off()
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
@@ -62,27 +68,27 @@ my_colors3 = rev(my_colors3)
 my_colors4 = colorRampPalette(rev(brewer.pal(n = 7, name = "RdYlBu")))(100)
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
 LetraSize <- 6
-pdf("MapasCalor/HeathmapCFNormRenglonSinBordes.pdf") # sin dendogramas columnas
+pdf("NewMapasCalor/HeathmapCFNormRenglonSinBordes.pdf") # sin dendogramas columnas
 pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,
          scale = "row",fontsize_row = LetraSize, border_color = NA)
 dev.off()
 #
-pdf("MapasCalor/HeathmapCFNormRenglonSinBordesMycolors.pdf") # sin dendogramas columnas
+pdf("NewMapasCalor/HeathmapCFNormRenglonSinBordesMycolors.pdf") # sin dendogramas columnas
 pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors,
          scale = "row",fontsize_row = LetraSize, border_color = NA)
 dev.off()
 #
-pdf("MapasCalor/HeathmapCFNormRenglonSinBordesMycolors2.pdf") # sin dendogramas columnas
+pdf("NewMapasCalor/HeathmapCFNormRenglonSinBordesMycolors2.pdf") # sin dendogramas columnas
 pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors2,
          scale = "row",fontsize_row = LetraSize, border_color = NA)
 dev.off()
 #
-pdf("MapasCalor/HeathmapCFNormRenglonSinBordesMycolors3.pdf") # sin dendogramas columnas
+pdf("NewMapasCalor/HeathmapCFNormRenglonSinBordesMycolors3.pdf") # sin dendogramas columnas
 pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors3,
          scale = "row",fontsize_row = LetraSize, border_color = NA)
 dev.off()
 #
-pdf("MapasCalor/HeathmapCFNormRenglonSinBordesMycolors4.pdf") # sin dendogramas columnas
+pdf("NewMapasCalor/HeathmapCFNormRenglonSinBordesMycolors4.pdf") # sin dendogramas columnas
 pheatmap(NewGenes_log2_filtrado, cluster_cols = FALSE,color = my_colors4,
          scale = "row",fontsize_row = LetraSize, border_color = NA)
 dev.off()
