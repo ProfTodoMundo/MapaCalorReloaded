@@ -1,5 +1,4 @@
 #---- Lectura de los datos ----
-library(readxl)
 setwd("~/Documents/GitHub/MapaCalorReloaded/NewDataMarch")
 EhMybSgenesexpression <- read_excel("EhMybSgenesexpression.xls")
 write_csv(EhMybSgenesexpression,"EhMybSGenes.csv")
@@ -7,6 +6,7 @@ View(EhMybSgenesexpression)
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
 # ---- Carga de librerias ----
 #<< == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> << == >> 
+library(readxl)
 library(RColorBrewer)
 library(readr)
 library(pheatmap)
