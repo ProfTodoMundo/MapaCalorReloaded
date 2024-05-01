@@ -3,7 +3,8 @@
 # install.packages("readxl")
 library(readxl)
 #---- Definicion del directorio de trabajo ----
-setwd("~/Desktop/MiGithub/MapaCalorReloaded/ClaseCGenomicas")
+setwd("~/Documents/GitHub/MapaCalorReloaded/ClaseCGenomicas")
+#setwd("~/Desktop/MiGithub/MapaCalorReloaded/ClaseCGenomicas")
 ##---- Limpieza del ambiente de RStudio ----
 rm(list = ls())
 ##----  Especifica la ruta de tu archivo Excel----
@@ -44,7 +45,97 @@ Log2BE <- log2(BE)
 nBE    <- length(Log2BE)
 hist(Log2BE, breaks = nbreaks, col= rainbow(25,0.3), 
      main = ' Log2 Basal Expresion')
+dataset1$Log2BE <- Log2BE
 ##---- Graficando con ggplot2 ----
 ###---- En caso de ser necesario instalamos las librerias que se requieren ----
 if (!requireNamespace("ggplot2", quietly = TRUE)) {install.packages("ggplot2")}
 if (!requireNamespace("RColorBrewer", quietly = TRUE)) {install.packages("RColorBrewer")}
+library(ggplot2)
+library(RColorBrewer)
+###---- Template 1, dodge, jitter, identity, stack ----
+numbins = 60;
+anchobins = 0.35;
+ggplot(dataset1, aes(x = dataset1$Log2BE)) +
+  geom_histogram(bins=numbins,
+                 binwidth = anchobins, 
+                 fill = "green", 
+                 color = "red",
+                 position = "dodge") +
+  theme_classic()+ 
+  theme(legend.position="left")+  
+  labs(title = "TPM Basal Expresion", 
+       x = "Valores", 
+       y = "Frecuencia")
+###---- Template 2, jitter + position legend:none, top, bottom, left, right, topright, ----
+# topleft, bottomtright, bottomleft
+ggplot(dataset1, aes(x = dataset1$Log2BE)) +
+  geom_histogram(bins=numbins,
+                 binwidth = anchobins, 
+                 fill = "green", 
+                 color = "red",
+                 position = "jitter") +
+  theme_classic()+ 
+  theme(legend.position="right")+  
+  labs(title = "TPM Basal Expresion", 
+       x = "Valores", 
+       y = "Frecuencia")
+###---- Template 3, dodge + uso de la paleta de colores (no corre) ----
+ggplot(dataset1, aes(x = Log2BE)) +
+  geom_histogram(bins=numbins,
+                 binwidth = anchobins, 
+                 #fill = "green", 
+                 color = "gray",
+                 position = "dodge") +
+  theme_classic() + 
+  theme(legend.position="bottomright") +  
+  scale_fill_brewer(7,palette="GnBu")+
+  labs(title = "TPM Basal Expresion", 
+       x = "Valores", 
+       y = "Frecuencia")
+# - - - - - - - -  - - - - - - - -  - - - - - - - -  - - - - - - - -  - - - - - - - -  - - - - - - - - 
+ggplot(dataset1, aes(x = Log2BE)) +
+  geom_histogram(bins=numbins,
+                 binwidth = anchobins, 
+                 fill = "green", 
+                 color = "gray",
+                 position = "dodge") +
+  theme_classic() + 
+  theme(legend.position="bottomright") +  
+  scale_fill_brewer(7,palette="YlOrRd")+
+  labs(title = "TPM Basal Expresion", 
+       x = "Valores", 
+       y = "Frecuencia")
+###---- Template 4, cambio de tonalidadades ----
+ggplot(dataset1, aes(x = Log2BE)) +
+  geom_histogram(bins=numbins,
+                 binwidth = anchobins, 
+                 alpha = 0.25,
+                 fill = "green", 
+                 color = "gray",
+                 position = "dodge") +
+  theme_classic() + 
+  theme(legend.position="bottomright") +  
+  labs(title = "TPM Basal Expresion", 
+       x = "Valores", 
+       y = "Frecuencia")
+###---- Template 5, tipo de lineas ----
+ggplot(dataset1, aes(x = Log2BE)) +
+  geom_histogram(bins=numbins,
+                 binwidth = anchobins, 
+                 alpha = 0.95,
+                 fill = "yellow", 
+                 color = "green",
+                 position = "dodge",
+                 linetype = "dashed") +
+  theme_classic() + 
+  theme(legend.position="bottomright") +  
+  labs(title = "TPM Basal Expresion", 
+       x = "Valores", 
+       y = "Frecuencia")
+
+
+
+
+
+
+
