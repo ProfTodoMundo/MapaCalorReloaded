@@ -132,10 +132,3 @@ ggplot(dataset1, aes(x = Log2BE)) +
   labs(title = "TPM Basal Expresion", 
        x = "Valores", 
        y = "Frecuencia")
-
-
-
-
-
-
-
