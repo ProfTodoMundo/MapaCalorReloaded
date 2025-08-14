@@ -19,7 +19,7 @@ colnames(datos)<- c("Genes","baseMean","log2FC",
                     "pEhEx_1.1","pEhEx_2.1","pEhEx_3.1",
                     "Certeza","DE" )
 # Parametro central
-top_n_labels <- 65
+top_n_labels <- 0
 #---- Procesamiento de datos ----
 alpha_cut    <- 0.05; lfc_cut      <- 1.8; 
 ##---- dataframe ----
